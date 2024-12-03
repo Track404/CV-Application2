@@ -1,13 +1,13 @@
 
 import './App.css'
 
-function GeneralInfo() {
+function generalInfo() {
   
 
   return (
     <>
       <div className='generalInfo'>
-        <form action="">
+        <form>
           <label >
             Name:
             <input type="text" name="name" id="name" />
@@ -29,4 +29,4 @@ function GeneralInfo() {
   )
 }
 
-export default GeneralInfo
+export default generalInfo
