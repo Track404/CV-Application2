@@ -1,12 +1,14 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 
-function ExperienceInfo() {
+function ExperienceInfo({allInfoSubmit}) {
     const [
         experienceInformation, setExperienceInformation] = useState({companyName:"",companyTitle:"",companyStartDate:"",companyEndDate:"",companyDescription:""});
-    function handleSubmit(e) {
-      e.preventDefault();
-        alert(`You said your name is${experienceInformation.companyName}, your email is ${experienceInformation.title} and your phone number is ${experienceInformation.startDate} `)
-    }
+        function handleSubmit(e) {
+            e.preventDefault();
+            
+            allInfoSubmit(experienceInformation)
+          }
 
     return (
       <>
