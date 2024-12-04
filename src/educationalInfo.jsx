@@ -1,13 +1,16 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 
-function EducationalInfo() {
+function EducationalInfo({allInfoSubmit}) {
     const [
-        educationalInfo, setEducationalInfo] = useState({schoolName:"",title:"",date:""});
-    function handleSubmit(e) {
-      e.preventDefault();
-        alert(`You said your name is${educationalInfo.schoolName}, your email is ${educationalInfo.title} and your phone number is ${educationalInfo.date} `)
-    }
-
+        educationalInfo, setEducationalInfo] = useState({schoolName:"",shcoolTitle:"",schoolDate:""});
+        
+        function handleSubmit(e) {
+            e.preventDefault();
+            
+            allInfoSubmit(educationalInfo)
+          }
+    
     return (
       <>
         <div className='educationalInfo'>
@@ -19,12 +22,12 @@ function EducationalInfo() {
             
             <label >
               Title:
-              <input type="text" name="Title" id="title" value={educationalInfo.title} onChange={e => setEducationalInfo({...educationalInfo,title:e.target.value})}/>
+              <input type="text" name="Title" id="title" value={educationalInfo.shcoolTitle} onChange={e => setEducationalInfo({...educationalInfo,shcoolTitle:e.target.value})}/>
             </label>
             
             <label >
               Date:
-              <input type="date" name="EduName" id="EduName" value={educationalInfo.date} onChange={e => setEducationalInfo({...educationalInfo,date:e.target.value})}/>
+              <input type="date" name="EduName" id="EduName" value={educationalInfo.schoolDate} onChange={e => setEducationalInfo({...educationalInfo,schoolDate:e.target.value})}/>
             </label>
             <button type="submit">Send</button>
           </form>

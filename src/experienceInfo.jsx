@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function ExperienceInfo() {
     const [
-        experienceInformation, setExperienceInformation] = useState({companyName:"",title:"",startDate:"",endDate:"",description:""});
+        experienceInformation, setExperienceInformation] = useState({companyName:"",companyTitle:"",companyStartDate:"",companyEndDate:"",companyDescription:""});
     function handleSubmit(e) {
       e.preventDefault();
         alert(`You said your name is${experienceInformation.companyName}, your email is ${experienceInformation.title} and your phone number is ${experienceInformation.startDate} `)
@@ -19,22 +19,22 @@ function ExperienceInfo() {
             
             <label >
               Title:
-              <input type="text" name="titlejob" id="titlejob" value={experienceInformation.title} onChange={e => setExperienceInformation({...experienceInformation,title:e.target.value})}/>
+              <input type="text" name="titlejob" id="titlejob" value={experienceInformation.companyTitle} onChange={e => setExperienceInformation({...experienceInformation,companyTitle:e.target.value})}/>
             </label>
             
             <label >
               Start Date:
-              <input type="date" name="dateJobStart" id="dateJobStart"value={experienceInformation.startDate} onChange={e => setExperienceInformation({...experienceInformation,startDate:e.target.value})}/>
+              <input type="date" name="dateJobStart" id="dateJobStart"value={experienceInformation.companyStartDate} onChange={e => setExperienceInformation({...experienceInformation,companyStartDate:e.target.value})}/>
             </label>
 
             <label >
               End Date:
-              <input type="date" name="dateJobEnd" id="dateJobEnd" value={experienceInformation.endDate} onChange={e => setExperienceInformation({...experienceInformation,endDate:e.target.value})}/>
+              <input type="date" name="dateJobEnd" id="dateJobEnd" value={experienceInformation.companyEndDate} onChange={e => setExperienceInformation({...experienceInformation,companyEndDate:e.target.value})}/>
             </label>
 
             <label >
               Description:
-              <textarea name="descriptionJob" id="descriptionJob" value={experienceInformation.description} onChange={e => setExperienceInformation({...experienceInformation,description:e.target.value})}></textarea>
+              <textarea name="descriptionJob" id="descriptionJob" value={experienceInformation.companyDescription} onChange={e => setExperienceInformation({...experienceInformation,companyDescription:e.target.value})}></textarea>
             </label>
             <button type="submit">Send</button>
           </form>
