@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-import './App.css';
 
 function GeneralInfo({ allInfoSubmit }) {
   const [generalInformation, setGeneralInformation] = useState({

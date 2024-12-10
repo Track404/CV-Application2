@@ -1,71 +1,89 @@
-import GeneralInfo from './generalInfo.jsx';
 import EducationalInfo from './educationalInfo.jsx';
-import ExperienceInfo from './experienceInfo.jsx';
 
 import { useState } from 'react';
+import { produce } from 'immer';
 
 function CvPreview() {
-  const [educationalInfo, setEducationalInfo] = useState({
-    schoolName: '',
-    shcoolTitle: '',
-    schoolDate: '',
-  });
+  const [educationalInfo, setEducationalInfo] = useState([
+    {
+      id: crypto.randomUUID(),
+      schoolName: '',
+      schoolTitle: '',
+      schoolDate: '',
+    },
+  ]);
 
-  const [experienceInformation, setExperienceInformation] = useState({
-    companyName: '',
-    companyTitle: '',
-    companyStartDate: '',
-    companyEndDate: '',
-    companyDescription: '',
-  });
+  const [infoEduSubmit, setInfoEduSubmit] = useState(educationalInfo);
 
-  const [generalInformation, setGeneralInformation] = useState({
-    name: '',
-    email: '',
-    tel: '',
-  });
-
-  function handleSubmitEdu(e) {
-    setEducationalInfo(e);
+  function handleSubmit(e) {
+    e.preventDefault();
+    setInfoEduSubmit(educationalInfo);
   }
 
-  function handleSubmitExp(e) {
-    setExperienceInformation(e);
-  }
-
-  function handleSubmitGeneral(e) {
-    setGeneralInformation(e);
+  function createEdu() {
+    if (educationalInfo.length < 3) {
+      setEducationalInfo([
+        ...educationalInfo,
+        {
+          id: crypto.randomUUID(),
+          schoolName: '',
+          schoolTitle: '',
+          schoolDate: '',
+        },
+      ]);
+    }
   }
 
   return (
     <>
       <div>
-        <GeneralInfo allInfoSubmit={handleSubmitGeneral} />
-        <EducationalInfo allInfoSubmit={handleSubmitEdu} />
-        <ExperienceInfo allInfoSubmit={handleSubmitExp} />
+        <form onSubmit={handleSubmit}>
+          {educationalInfo.map((p, index) => {
+            return (
+              <EducationalInfo
+                value={p}
+                key={p.id}
+                remove={() => {
+                  setEducationalInfo((currentInfo) =>
+                    currentInfo.filter((x) => x.id !== p.id)
+                  );
+                }}
+                changeInfo={(e) => {
+                  const name = e.target.name;
+                  const value = e.target.value;
+                  setEducationalInfo((currentInfo) =>
+                    produce(currentInfo, (v) => {
+                      if (name === 'schoolName') {
+                        v[index].schoolName = value;
+                      } else if (name === 'schoolTitle') {
+                        v[index].schoolTitle = value;
+                      } else if (name === 'schoolDate') {
+                        v[index].schoolDate = value;
+                      }
+                    })
+                  );
+                }}
+              />
+            );
+          })}
+          <button type="submit">Submit</button>
+        </form>
+        <button onClick={createEdu}>create New Edu</button>
       </div>
+
       <div>
         <h1>The CV</h1>
-        <div>
-          <h2>General Information</h2>
-          <p>{generalInformation.name}</p>
-          <p>{generalInformation.email}</p>
-          <p>{generalInformation.tel}</p>
-        </div>
-        <div>
-          <h2>Experience Information</h2>
-          <p>{experienceInformation.companyName}</p>
-          <p>{experienceInformation.companyTitle}</p>
-          <p>{experienceInformation.companyStartDate}</p>
-          <p>{experienceInformation.companyEndDate}</p>
-          <p>{experienceInformation.companyDescription}</p>
-        </div>
-        <div>
-          <h2>Educational Information</h2>
-          <p>{educationalInfo.schoolName}</p>
-          <p>{educationalInfo.shcoolTitle}</p>
-          <p>{educationalInfo.schoolDate}</p>
-        </div>
+
+        <h2>Educational Information</h2>
+        <ul>
+          {infoEduSubmit.map((info) => {
+            return (
+              <li key={info.id}>
+                {info.schoolName}, {info.schoolTitle}, {info.schoolDate}
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </>
   );
