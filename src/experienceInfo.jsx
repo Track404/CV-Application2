@@ -1,105 +1,63 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react';
 
-function ExperienceInfo({ allInfoSubmit }) {
-  const [experienceInformation, setExperienceInformation] = useState({
-    companyName: '',
-    companyTitle: '',
-    companyStartDate: '',
-    companyEndDate: '',
-    companyDescription: '',
-  });
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    allInfoSubmit(experienceInformation);
-  }
-
+function ExperienceInfo({ changeInfo, value, remove }) {
   return (
     <>
-      <div className="experienceInfo">
-        <form onSubmit={handleSubmit}>
-          <label>
-            CompanyName:
-            <input
-              type="text"
-              name="companyName"
-              id="companyName"
-              value={experienceInformation.companyName}
-              onChange={(e) =>
-                setExperienceInformation({
-                  ...experienceInformation,
-                  companyName: e.target.value,
-                })
-              }
-            />
-          </label>
+      <label>
+        CompanyName:
+        <input
+          type="text"
+          name="companyName"
+          id="companyName"
+          value={value.companyName}
+          onChange={changeInfo}
+        />
+      </label>
 
-          <label>
-            Title:
-            <input
-              type="text"
-              name="titlejob"
-              id="titlejob"
-              value={experienceInformation.companyTitle}
-              onChange={(e) =>
-                setExperienceInformation({
-                  ...experienceInformation,
-                  companyTitle: e.target.value,
-                })
-              }
-            />
-          </label>
+      <label>
+        Title:
+        <input
+          type="text"
+          name="companyTitle"
+          id="titlejob"
+          value={value.companyTitle}
+          onChange={changeInfo}
+        />
+      </label>
 
-          <label>
-            Start Date:
-            <input
-              type="date"
-              name="dateJobStart"
-              id="dateJobStart"
-              value={experienceInformation.companyStartDate}
-              onChange={(e) =>
-                setExperienceInformation({
-                  ...experienceInformation,
-                  companyStartDate: e.target.value,
-                })
-              }
-            />
-          </label>
+      <label>
+        Start Date:
+        <input
+          type="date"
+          name="companyStartDate"
+          id="dateJobStart"
+          value={value.companyStartDate}
+          onChange={changeInfo}
+        />
+      </label>
 
-          <label>
-            End Date:
-            <input
-              type="date"
-              name="dateJobEnd"
-              id="dateJobEnd"
-              value={experienceInformation.companyEndDate}
-              onChange={(e) =>
-                setExperienceInformation({
-                  ...experienceInformation,
-                  companyEndDate: e.target.value,
-                })
-              }
-            />
-          </label>
+      <label>
+        End Date:
+        <input
+          type="date"
+          name="companyEndDate"
+          id="dateJobEnd"
+          value={value.companyEndDate}
+          onChange={changeInfo}
+        />
+      </label>
 
-          <label>
-            Description:
-            <textarea
-              name="descriptionJob"
-              id="descriptionJob"
-              value={experienceInformation.companyDescription}
-              onChange={(e) =>
-                setExperienceInformation({
-                  ...experienceInformation,
-                  companyDescription: e.target.value,
-                })
-              }
-            ></textarea>
-          </label>
-          <button type="submit">Send</button>
-        </form>
-      </div>
+      <label>
+        Description:
+        <textarea
+          name="companyDescription"
+          id="descriptionJob"
+          value={value.companyDescription}
+          onChange={changeInfo}
+        ></textarea>
+      </label>
+
+      <button onClick={remove}>X</button>
     </>
   );
 }
