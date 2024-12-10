@@ -3,8 +3,19 @@ import EducationalInfo from './educationalInfo.jsx';
 import { useState } from 'react';
 import { produce } from 'immer';
 import ExperienceInfo from './experienceInfo.jsx';
+import GeneralInfo from './generalInfo.jsx';
 
 function CvPreview() {
+  // general information states
+  const [generalInformation, setGeneralInformation] = useState({
+    id: crypto.randomUUID(),
+    name: '',
+    email: '',
+    tel: '',
+  });
+
+  const [infoGeneralSubmit, setinfoGeneralSubmit] =
+    useState(generalInformation);
   // educational information states
   const [educationalInfo, setEducationalInfo] = useState([
     {
@@ -71,9 +82,32 @@ function CvPreview() {
       ]);
     }
   }
+
+  // general Utilites function
+  function handleSubmitGeneral(e) {
+    e.preventDefault();
+    setinfoGeneralSubmit(generalInformation);
+  }
   return (
     <>
       <div className="allInput">
+        <div className="allGeneralInput">
+          <form onSubmit={handleSubmitGeneral}>
+            <GeneralInfo
+              key={generalInformation.id}
+              value={generalInformation}
+              changeInfo={(e) => {
+                const name = e.target.name;
+                const value = e.target.value;
+                setGeneralInformation({
+                  ...generalInformation,
+                  [name]: value,
+                });
+              }}
+            />
+            <button type="submit">Submit</button>
+          </form>
+        </div>
         <div className="allEducationalInput">
           <form onSubmit={handleSubmitEdu}>
             {educationalInfo.map((p, index) => {
@@ -156,6 +190,12 @@ function CvPreview() {
 
       <div>
         <h1>The CV</h1>
+        <h2>General Information</h2>
+        <ul>
+          <li>{infoGeneralSubmit.name}</li>
+          <li>{infoGeneralSubmit.email}</li>
+          <li>{infoGeneralSubmit.tel}</li>
+        </ul>
 
         <h2>Educational Information</h2>
         <ul>
