@@ -3,8 +3,9 @@
 function GeneralInfo({ changeInfo, value }) {
   return (
     <>
-      <label>
-        Name:
+      <div className="inputLabel">
+        <label htmlFor="name">Name</label>
+
         <input
           type="text"
           name="name"
@@ -12,10 +13,19 @@ function GeneralInfo({ changeInfo, value }) {
           value={value.name}
           onChange={changeInfo}
         />
-      </label>
-
-      <label>
-        Email:
+      </div>
+      <div className="inputLabel">
+        <label htmlFor="job">Job</label>
+        <input
+          type="text"
+          name="job"
+          id="job"
+          value={value.job}
+          onChange={changeInfo}
+        />
+      </div>
+      <div className="inputLabel">
+        <label htmlFor="email">Email</label>
         <input
           type="email"
           name="email"
@@ -23,18 +33,37 @@ function GeneralInfo({ changeInfo, value }) {
           value={value.email}
           onChange={changeInfo}
         />
-      </label>
-
-      <label>
-        Phone Number:
+      </div>
+      <div className="inputLabel">
+        <label htmlFor="phone">Phone Number</label>
         <input
           type="tel"
-          name="tel"
+          name="phone"
           id="phone"
           value={value.tel}
           onChange={changeInfo}
         />
-      </label>
+      </div>
+      <div className="inputLabel">
+        <label htmlFor="location">Location</label>
+        <input
+          type="text"
+          name="location"
+          id="location"
+          value={value.location}
+          onChange={changeInfo}
+        />
+      </div>
+      <div className="inputLabel">
+        <label htmlFor="description">Description</label>
+        <textarea
+          type="text"
+          name="description"
+          id="description"
+          value={value.description}
+          onChange={changeInfo}
+        />
+      </div>
     </>
   );
 }

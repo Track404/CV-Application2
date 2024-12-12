@@ -3,8 +3,8 @@
 function ExperienceInfo({ changeInfo, value, remove }) {
   return (
     <>
-      <label>
-        CompanyName:
+      <div className="inputLabel">
+        <label htmlFor="companyName">CompanyName</label>
         <input
           type="text"
           name="companyName"
@@ -12,10 +12,9 @@ function ExperienceInfo({ changeInfo, value, remove }) {
           value={value.companyName}
           onChange={changeInfo}
         />
-      </label>
-
-      <label>
-        Title:
+      </div>
+      <div className="inputLabel">
+        <label htmlFor="titleJob">Title</label>
         <input
           type="text"
           name="companyTitle"
@@ -23,39 +22,38 @@ function ExperienceInfo({ changeInfo, value, remove }) {
           value={value.companyTitle}
           onChange={changeInfo}
         />
-      </label>
-
-      <label>
-        Start Date:
+      </div>
+      <div className="inputLabel">
+        <label htmlFor="dateJobStart">Start Date</label>
         <input
-          type="date"
+          type="month"
           name="companyStartDate"
           id="dateJobStart"
+          max={value.companyEndDate}
           value={value.companyStartDate}
           onChange={changeInfo}
         />
-      </label>
-
-      <label>
-        End Date:
+      </div>
+      <div className="inputLabel">
+        <label htmlFor="dateJobEndDate">End Date</label>
         <input
-          type="date"
+          type="month"
           name="companyEndDate"
           id="dateJobEnd"
+          min={value.companyStartDate}
           value={value.companyEndDate}
           onChange={changeInfo}
         />
-      </label>
-
-      <label>
-        Description:
+      </div>
+      <div className="inputLabel">
+        <label htmlFor="descriptionJob">Description</label>
         <textarea
           name="companyDescription"
           id="descriptionJob"
           value={value.companyDescription}
           onChange={changeInfo}
         ></textarea>
-      </label>
+      </div>
 
       <button onClick={remove}>X</button>
     </>

@@ -3,8 +3,8 @@
 function EducationalInfo({ changeInfo, value, remove }) {
   return (
     <>
-      <label>
-        SchoolName:
+      <div className="inputLabel">
+        <label htmlFor="schoolName">SchoolName</label>
         <input
           type="text"
           name="schoolName"
@@ -12,29 +12,40 @@ function EducationalInfo({ changeInfo, value, remove }) {
           value={value.schoolName}
           onChange={changeInfo}
         />
-      </label>
-
-      <label>
-        Title:
+      </div>
+      <div className="inputLabel">
+        <label htmlFor="shcoolTitle">Title</label>
         <input
           type="text"
           name="schoolTitle"
-          id="title"
+          id="schoolTitle"
           value={value.schoolTitle}
           onChange={changeInfo}
         />
-      </label>
-
-      <label>
-        Date:
+      </div>
+      <div className="inputLabel">
+        <label htmlFor="schoolDateStart">Date Start</label>
         <input
-          type="date"
-          name="schoolDate"
-          id="EduName"
-          value={value.schoolDate}
+          type="month"
+          name="schoolDateStart"
+          id="schoolDateStart"
+          max={value.schoolDateEnd}
+          value={value.schoolDateStart}
           onChange={changeInfo}
         />
-      </label>
+      </div>
+      <div className="inputLabel">
+        <label htmlFor="schoolDateEnd">Date End</label>
+        <input
+          type="month"
+          name="schoolDateEnd"
+          id="schoolDateEnd"
+          min={value.schoolDateStart}
+          value={value.schoolDateEnd}
+          onChange={changeInfo}
+        />
+      </div>
+
       <button onClick={remove}>X</button>
     </>
   );
